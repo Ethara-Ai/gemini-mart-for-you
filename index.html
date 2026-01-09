@@ -5,8 +5,38 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gemini</title>
+    <style>
+      #debug-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.8);
+        color: lime;
+        font-family: monospace;
+        padding: 20px;
+        z-index: 9999;
+        display: none;
+        pointer-events: none;
+        white-space: pre-wrap;
+      }
+    </style>
+    <script>
+      window.onerror = function(msg, src, line, col, error) {
+        var el = document.getElementById('debug-overlay');
+        if (el) {
+          el.style.display = 'block';
+          el.innerText += '\n[ERROR] ' + msg + '\n' + src + ':' + line + '\n' + (error ? error.stack : '');
+        }
+      };
+      window.addEventListener('load', function() {
+        var el = document.getElementById('debug-overlay');
+        if (el) el.innerText += '\n[INFO] Page Loaded. URL: ' + window.location.href;
+      });
+    </script>
   </head>
   <body>
+    <div id="debug-overlay">DEBUG LOG INITIALIZED</div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
