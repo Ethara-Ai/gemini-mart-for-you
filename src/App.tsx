@@ -9,8 +9,13 @@ import { CheckoutPage } from './pages/CheckoutPage';
 import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
+  // Ensure basename doesn't have a trailing slash for React Router
+  const basename = import.meta.env.BASE_URL.endsWith('/') 
+    ? import.meta.env.BASE_URL.slice(0, -1) 
+    : import.meta.env.BASE_URL;
+
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename={basename}>
       <Providers>
         <Layout>
           <Routes>
