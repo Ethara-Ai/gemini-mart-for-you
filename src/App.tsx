@@ -10,7 +10,7 @@ import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Providers>
         <Layout>
           <Routes>
