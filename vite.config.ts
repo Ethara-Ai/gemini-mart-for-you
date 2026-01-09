@@ -8,15 +8,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion'],
-        },
-      },
-    },
-    chunkSizeWarningLimit: 1000,
+    // Removed manualChunks to avoid potential loading issues
   },
 })
